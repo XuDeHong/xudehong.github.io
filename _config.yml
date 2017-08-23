@@ -3,7 +3,7 @@ title: EthanX's Blog
 subtitle: 夫君子之行，静以修身，俭以养德。
 welcome_message:
 description: 嗨，我叫许德鸿，是一名iOS开发者，目前就职于国信证券。欢迎来到我的博客，一起交流技术，共同学习。
-creator: <a href="http://onev.cat">@onevcat</a>
+creator: EthanX
 
 url: "http://ethanx.me"
 
@@ -13,7 +13,7 @@ permalink: /:year/:month/:title/
 highlighter: rouge
 
 # supported colors: blue, green, purple, red, orange or slate. If you need clear, leave it empty.
-cover_color: red
+cover_color: 
 
 # The blog button should not be removed.
 blog_button:
