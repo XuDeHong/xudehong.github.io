@@ -13,7 +13,7 @@ permalink: /:year/:month/:title/
 highlighter: rouge
 
 # supported colors: blue, green, purple, red, orange or slate. If you need clear, leave it empty.
-cover_color: 
+cover_color:
 
 # The blog button should not be removed.
 blog_button:
@@ -22,7 +22,7 @@ blog_button:
 
 # Navigation buttons in the front page.
 nav:
-    - {title: 关于, description: 关于博主的介绍, url: 'http://project.onevcat.com'}
+    - {title: 简历, description: 查看博主简历, url: 'https://github.com/XuDeHong/my-resume/blob/master/个人简历.pdf'}
     # - {title: Another Button, description: A button, url: 'http://example.com'}
 
 # Pagination
