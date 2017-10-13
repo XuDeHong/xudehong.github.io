@@ -5,34 +5,9 @@
     <description>嗨，我叫许德鸿，是一名iOS开发者，目前就职于国信证券。欢迎来到我的博客，一起交流技术，共同学习。</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 04 Oct 2017 11:10:20 +0800</pubDate>
-    <lastBuildDate>Wed, 04 Oct 2017 11:10:20 +0800</lastBuildDate>
+    <pubDate>Fri, 13 Oct 2017 17:35:48 +0800</pubDate>
+    <lastBuildDate>Fri, 13 Oct 2017 17:35:48 +0800</lastBuildDate>
     <generator>Jekyll v3.5.2</generator>
-    
-      <item>
-        <title>基础乐理（一）：节奏</title>
-        <description>&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;节奏&lt;/code&gt;是音乐最基本的要素之一，是指在音乐进行过程中乐音有组织的长短关系，是音乐的骨架。生活中随处可见类似节奏的例子，比如行走时步幅的长短与相同的间隔就是节奏的体现。而在音乐中，&lt;code class=&quot;highlighter-rouge&quot;&gt;节奏&lt;/code&gt;涉及几个基本概念，分别是&lt;code class=&quot;highlighter-rouge&quot;&gt;拍&lt;/code&gt;、&lt;code class=&quot;highlighter-rouge&quot;&gt;速度&lt;/code&gt;、&lt;code class=&quot;highlighter-rouge&quot;&gt;小节&lt;/code&gt;、&lt;code class=&quot;highlighter-rouge&quot;&gt;节拍&lt;/code&gt;、&lt;code class=&quot;highlighter-rouge&quot;&gt;音符时值&lt;/code&gt;。&lt;/p&gt;
-
-&lt;h2 id=&quot;拍&quot;&gt;拍&lt;/h2&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;拍&lt;/code&gt;是指一首音乐中&lt;code class=&quot;highlighter-rouge&quot;&gt;最小&lt;/code&gt;的&lt;code class=&quot;highlighter-rouge&quot;&gt;相同间隔&lt;/code&gt;的&lt;code class=&quot;highlighter-rouge&quot;&gt;单位&lt;/code&gt;。比如我们做广播体操时喊的一、二、三、四，二、二、三、四，每喊一个数就是&lt;code class=&quot;highlighter-rouge&quot;&gt;一拍&lt;/code&gt;，拍与拍之间的时间是相同的，稳定的。&lt;/p&gt;
-
-&lt;h2 id=&quot;速度&quot;&gt;速度&lt;/h2&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;速度&lt;/code&gt;是指&lt;code class=&quot;highlighter-rouge&quot;&gt;一分钟&lt;/code&gt;内有多少&lt;code class=&quot;highlighter-rouge&quot;&gt;拍&lt;/code&gt;，单位是&lt;code class=&quot;highlighter-rouge&quot;&gt;bpm&lt;/code&gt;。例如60bpm就是一分钟六十拍，120bpm的速度要比60bpm的速度快，前者一分钟120拍。&lt;/p&gt;
-
-&lt;h2 id=&quot;小节&quot;&gt;小节&lt;/h2&gt;
-
-&lt;p&gt;音乐中一定数量的拍构成一小节&lt;/p&gt;
-</description>
-        <pubDate>Wed, 04 Oct 2017 09:06:00 +0800</pubDate>
-        <link>http://localhost:4000/2017/10/music-theory-rhythm/</link>
-        <guid isPermaLink="true">http://localhost:4000/2017/10/music-theory-rhythm/</guid>
-        
-        <category>乐理学习</category>
-        
-        
-      </item>
     
       <item>
         <title>Hello World - Vno</title>
