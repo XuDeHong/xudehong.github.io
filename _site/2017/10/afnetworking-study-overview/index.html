@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <title>AFNetworking 3.1.0 源码学习之概览</title>
+  <meta name="description" content="做iOS开发，AFNetworking几乎是用来做网络请求的标配。这是一个非常易于使用的框架，但里面具体是怎么构造一个网络请求，怎么接收网络应答，除此之外又做了哪些额外的工作，值得我们去深入学习。并且该框架具有良好的架构设计、编码规范和详尽的文档，适合作为我们学习开源框架的首选。">
+  <meta name="author" content="Wei Wang">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="AFNetworking 3.1.0 源码学习之概览">
+  <meta property="og:description" content="做iOS开发，AFNetworking几乎是用来做网络请求的标配。这是一个非常易于使用的框架，但里面具体是怎么构造一个网络请求，怎么接收网络应答，除此之外又做了哪些额外的工作，值得我们去深入学习。并且该框架具有良好的架构设计、编码规范和详尽的文档，适合作为我们学习开源框架的首选。">
+
+  <link rel="icon" type="image/png" href="/assets/images/favicon.png" />
+  <link href="/assets/images/favicon.png" rel="shortcut icon" type="image/png">
+
+  <link rel="stylesheet" href="/css/main.css">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
+  <link rel="canonical" href="http://localhost:4000/2017/10/afnetworking-study-overview/">
+  <link rel="alternate" type="application/rss+xml" title="EthanX's Blog" href="http://localhost:4000/feed.xml">
+
+  <meta name="google-site-verification" content="1-1ZlHoRvM0T2FqPbW2S-qLgYXN6rsn52kErlMPd_gw" />
+
+</head>
+
+
+  <body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="fa fa-list btn-mobile-menu__icon"></i>
+        <i class="fa fa-angle-up btn-mobile-close__icon hidden"></i>
+    </span>
+    
+    <header class="panel-cover panel-cover--collapsed" style="background-image: url('/assets/images/background-cover.jpg')">
+  <div class="panel-main">
+
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        <a href="/#blog" title="前往 EthanX's Blog 的主页" class="blog-button"><img src="/assets/images/avatar.jpg" width="80" alt="EthanX's Blog logo" class="panel-cover__logo logo" /></a>
+        <h1 class="panel-cover__title panel-title"><a href="/#blog" title="link to homepage for EthanX's Blog" class="blog-button">EthanX's Blog</a></h1>
+        
+        <span class="panel-cover__subtitle panel-subtitle">夫君子之行，静以修身，俭以养德。</span>
+        
+        <hr class="panel-cover__divider" />
+        <p class="panel-cover__description">嗨，我叫许德鸿，是一名iOS开发者，目前就职于国信证券。欢迎来到我的博客，一起交流技术，共同学习。</p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+        
+        
+        
+        <div class="navigation-wrapper">
+          <div>
+            <nav class="cover-navigation cover-navigation--primary">
+              <ul class="navigation">
+                <li class="navigation__item"><a href="/#blog" title="访问博客" class="blog-button">博客</a></li>
+                
+                  <li class="navigation__item"><a href="https://github.com/XuDeHong/my-resume/blob/master/个人简历pdf版.pdf" target="_blank" title="查看博主简历">简历</a></li>
+                
+              </ul>
+            </nav>
+          </div>
+          
+          <div><nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+
+  
+  <!-- Github -->
+  <li class="navigation__item">
+    <a href="https://github.com/XuDeHong" title="@XuDeHong 的 Github" target="_blank">
+      <i class='social fa fa-github'></i>
+      <span class="label">Github</span>
+    </a>
+  </li>
+  
+
+  <!-- RSS -->
+  <li class="navigation__item">
+    <a href="/feed.xml" rel="author" title="RSS" target="_blank">
+      <i class='social fa fa-rss'></i>
+      <span class="label">RSS</span>
+    </a>
+  </li>
+
+  
+  <!-- Email -->
+  <li class="navigation__item">
+    <a href="mailto:DeHongBoy@outlook.com" title="Contact me">
+      <i class='social fa fa-envelope'></i>
+      <span class="label">Email</span>
+    </a>
+  </li>
+  
+
+  </ul>
+</nav>
+</div>
+        </div>
+      </div>
+    </div>
+    
+    
+    <div class="panel-cover--overlay cover-disabled"></div>
+    
+  </div>
+</header>
+
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner">
+            <article class="post-container post-container--single" itemscope itemtype="http://schema.org/BlogPosting">
+  <header class="post-header">
+    <div class="post-meta">
+      <time datetime="2017-10-15 09:54:24 +0800" itemprop="datePublished" class="post-meta__date date">2017-10-15</time> &#8226; <span class="post-meta__tags tags">iOS</span>
+    </div>
+    <h1 class="post-title">AFNetworking 3.1.0 源码学习之概览</h1>
+  </header>
+
+  <section class="post">
+    <p>做iOS开发，<code class="highlighter-rouge">AFNetworking</code>几乎是用来做网络请求的标配。这是一个非常易于使用的框架，但里面具体是怎么构造一个网络请求，怎么接收网络应答，除此之外又做了哪些额外的工作，值得我们去深入学习。并且该框架具有良好的<code class="highlighter-rouge">架构设计</code>、<code class="highlighter-rouge">编码规范</code>和详尽的文档，适合作为我们学习开源框架的首选。</p>
+
+<p>本文基于<a href="https://github.com/AFNetworking/AFNetworking">AFNetworking 3.1.0</a>进行学习，首先看下官方下载下来的源码结构：</p>
+
+<p><img src="/assets/images/2017/afnetworking-study-overview-1.png" alt="" /></p>
+
+<p><code class="highlighter-rouge">AFNetworking Example</code>是官方的Demo，而上面的<code class="highlighter-rouge">AFNetworking</code>则是该框架的源代码。其中<code class="highlighter-rouge">AFNetworking</code>文件夹就是框架的核心源代码，也是我们学习的重点，而下面的<code class="highlighter-rouge">UKit+AFNetworking</code>则是对UIKit的扩展。</p>
+
+<p>接下来，我们点开<code class="highlighter-rouge">AFNetworking</code>文件夹看下：</p>
+
+<p><img src="/assets/images/2017/afnetworking-study-overview-2.png" alt="" /></p>
+
+<p>我们看到<code class="highlighter-rouge">AFNetworking</code>有六个class，每个class的作用分别如下：</p>
+
+<ul>
+  <li><code class="highlighter-rouge">AFHTTPSessionManager</code>：继承并扩展AFURLSessionManager，用于进行HTTP协议的网络通信</li>
+  <li><code class="highlighter-rouge">AFNetworkReachabilityManager</code>：用于监听网络状态变化的模块</li>
+  <li><code class="highlighter-rouge">AFSecurityPolicy</code>：用于设置网络通信安全策略的模块</li>
+  <li><code class="highlighter-rouge">AFURLRequestSerialization</code>：用于网络通信请求信息的序列化/反序列化的模块</li>
+  <li><code class="highlighter-rouge">AFURLResponseSerialization</code>：用于网络通信应答信息的序列化/反序列化的模块</li>
+  <li><code class="highlighter-rouge">AFURLSessionManager</code>：核心网络通信模块</li>
+</ul>
+
+<p>这六个模块的结构关系如下：</p>
+
+<p><img src="/assets/images/2017/afnetworking-study-overview-3.png" alt="" /></p>
+
+<p>核心通信模块是<code class="highlighter-rouge">AFURLSessionManager</code>，<code class="highlighter-rouge">AFHTTPSessionManager</code>继承自<code class="highlighter-rouge">AFURLSessionManager</code>，而<code class="highlighter-rouge">AFSecurityPolicy</code>、<code class="highlighter-rouge">AFNetworkReachabilityManager</code>、<code class="highlighter-rouge">AFURLRequestSerialization</code>、<code class="highlighter-rouge">AFURLResponseSerialization</code>这四个模块则是较为独立模块，为<code class="highlighter-rouge">AFURLSessionManager</code>和<code class="highlighter-rouge">AFHTTPSessionManager</code>所调用。这四个模块也说明了<code class="highlighter-rouge">AFNetworking</code>框架在进行网络通讯时做了其他三件事情，分别是设置网络通信安全策略，监听网络状态变化和请求/应答的信息序列化以及反序列化。</p>
+
+<p>接下来我将会对<code class="highlighter-rouge">AFNetworking</code>这六个模块进行详细的学习和记录。</p>
+
+  </section>
+</article>
+
+<section class="read-more">
+   
+
+   
+</section>
+
+<section class="post-comments">
+  
+    <div id="disqus_thread"></div>
+    <script>
+    
+    var disqus_config = function () {
+        this.page.url = "http://localhost:4000/2017/10/afnetworking-study-overview/";
+        this.page.identifier = "/2017/10/afnetworking-study-overview/";
+    };
+
+    var disqus_shortname = 'vno-jekyll';
+    
+    (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+        s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+    </script>
+    <noscript>要查看<a href="http://disqus.com/?ref_noscript"> Disqus </a>评论，请启用 JavaScript</noscript>
+    
+  
+  
+  
+  
+</section>
+
+
+            <section class="footer">
+    <footer>
+        <span class="footer__copyright">本站由 EthanX 创建，主题改编自 <a href="https://github.com/onevcat/vno-jekyll">Vno - Jekyll</a> ，您可以在 GitHub 找到<a href="https://github.com/XuDeHong/xudehong.github.io">本站源码</a> - &copy; 2017</span>
+    </footer>
+</section>
+
+        </div>
+    </div>
+    
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+
+<script type="text/javascript" src="/js/main.js"></script>
+
+
+
+    
+  </body>
+
+</html>
