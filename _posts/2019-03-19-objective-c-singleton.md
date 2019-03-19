@@ -5,7 +5,7 @@ date: 2019-03-19 09:45:24.000000000 +09:00
 tags: iOS
 ---
 
-```objective-c
+```objc
 //
 //  Singleton.h
 //  SingletonText
@@ -27,7 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
 NS_ASSUME_NONNULL_END
 ```
 
-```
+```objc
 //
 //  Singleton.m
 //  SingletonText
